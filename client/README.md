@@ -1,8 +1,3 @@
 # JS-Store
-echo "# JS-Store" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/iAmJitenderRawat/JS-Store.git
-git push -u origin main
+### It is a Single Page E-commerce website built and designed by me.
+### To build this website, I have used JavaScript, CSS, React, Redux-Toolkit and some packages like Chakra-UI, axios, formik, yup and swiper.
