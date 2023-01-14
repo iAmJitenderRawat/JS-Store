@@ -1,0 +1,67 @@
+.navbar{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+.grid{
+    grid-template-columns: repeat(2,1fr);
+}
+.card{
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+.left{
+    width: 20%;
+    position: sticky;
+    bottom: 0;
+    padding: 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.right{
+    width: 80%;
+    margin: auto;
+}
+
+.itemCard{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.itemCard:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.categoryItems{
+    padding: 2px 0 2px 20px;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+
+}
+.categoryItems:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transform: scale(1.5);
+    padding-left: 50px;
+    width: 85%;
+    background-color: black;
+}
+.center{
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+    font-size: x-large;
+}
+.image{
+    width: 250px;
+    height:250px;
+    margin: auto;
+}
+.image:hover{
+    scale: 1.1;
+}
+.cartItem{
+    position: relative;
+    top: -15px;
+    right: 10px;
+    padding:0 2px;
+    border-radius: 10px;
+    background-color: crimson;
+}
