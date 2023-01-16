@@ -80,21 +80,24 @@ export function Checkout() {
             {Cartproducts
               ? Cartproducts?.map((item) => {
                   return (
-                    <Flex key={item.id} p={5} gap={5}>
-                      <Image src={item.thumbnail} w={100} />
-                      <Box>
-                        <Text>{item.title}</Text>
-                        <Text>₹ {70 * item.price}</Text>
-                      </Box>
-                    </Flex>
+                    <Box>
+                      <Flex key={item.id} p={5} gap={5}>
+                        <Image src={item.thumbnail} w={100} />
+                        <Box>
+                          <Text>{item.title}</Text>
+                          <Text>₹ {70 * item.price}</Text>
+                        </Box>
+                      </Flex>
+                      <Divider orientation="horizontal" />
+                    </Box>
                   );
                 })
               : null}
             <Heading>
               {Cartproducts.length > 0 ? "Total: ₹" + " " + total : null}
             </Heading>
-            <Center>
-              <Button bg={"green.400"} color={"white"} onClick={handlePay}>
+            <Center p={5}>
+              <Button bg={"green.400"} w={"full"} color={"white"} onClick={handlePay}>
                 Pay
               </Button>
             </Center>

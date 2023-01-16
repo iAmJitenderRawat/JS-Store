@@ -95,15 +95,14 @@ export function Navbar() {
                   <MenuList alignItems={"center"} bg={color} color={bg}>
                     <br />
                     <Center>
-                      <Image
-                        src={userData.imageUrl}
-                        borderRadius={"50%"}
-                      />
+                      <Image src={userData.imageUrl} borderRadius={"50%"} />
                     </Center>
                     <br />
                     <Center>
                       {isAuth ? (
-                        <Text>{userData.firstName}</Text>
+                        <Text>
+                          {userData.firstName} {userData.lastName}
+                        </Text>
                       ) : (
                         <Text>Username</Text>
                       )}

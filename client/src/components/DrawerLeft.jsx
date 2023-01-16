@@ -34,13 +34,13 @@ export function DrawerLeft() {
 
   const handleImage = () => {
     // localStorage.setItem("imageLS",JSON.stringify(image));
-    arrUsers.forEach(element => {
-      if(element.email===userData.email){
-        element.imageUrl=image;
-        userData.imageUrl=image;
+    arrUsers.forEach((element) => {
+      if (element.email === userData.email) {
+        element.imageUrl = image;
+        userData.imageUrl = image;
       }
     });
-    localStorage.setItem("usersLS",JSON.stringify(arrUsers));
+    localStorage.setItem("usersLS", JSON.stringify(arrUsers));
   };
 
   // useEffect(()=>{
@@ -79,24 +79,28 @@ export function DrawerLeft() {
 
           {isAuth ? (
             <DrawerBody>
-              {image ? (
-                <Center>
-                  <Image src={image} borderRadius={"50%"} alt={userData.firstName} />
-                </Center>
-              ) : null}
-              <Text>
-                Name: {userData.firstName} {userData.lastName}
-              </Text>
-              <Text>Email: {userData.email}</Text>
-              <InputGroup>
-                <InputLeftAddon children={<FaUserCircle />} />
-                <Input
-                  placeholder="Profile image url"
-                  name="image"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
-              </InputGroup>
+              <Center flexDirection={"column"}>
+                {image ? (
+                  <Image
+                    src={image}
+                    borderRadius={"50%"}
+                    alt={userData.firstName}
+                  />
+                ) : null}
+                <Text>
+                  Name: {userData.firstName} {userData.lastName}
+                </Text>
+                <Text>Email: {userData.email}</Text>
+                <InputGroup m={"10px 0"}>
+                  <InputLeftAddon children={<FaUserCircle />} />
+                  <Input
+                    placeholder="Profile image url"
+                    name="image"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                  />
+                </InputGroup>
+              </Center>
             </DrawerBody>
           ) : null}
 
