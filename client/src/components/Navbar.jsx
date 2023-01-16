@@ -29,7 +29,6 @@ import { AuthContext } from "./AuthContext";
 
 export function Navbar() {
   const userData = JSON.parse(localStorage.getItem("userDataLS")) || {};
-  const image = localStorage.getItem("imageLS");
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("blue.500", "gray.100");
   const color = useColorModeValue("white", "black");
@@ -39,7 +38,7 @@ export function Navbar() {
   const { isAuth, setAuth } = useContext(AuthContext);
   const toast=useToast();
   console.log(isAuth);
-  console.log(image);
+
   const handleClick = () => {
     setAuth(false)
     toast({
@@ -97,7 +96,7 @@ export function Navbar() {
                     <br />
                     <Center>
                       <Image
-                        src={image} alt={image}
+                        src={userData.imageUrl}
                         borderRadius={"50%"}
                       />
                     </Center>

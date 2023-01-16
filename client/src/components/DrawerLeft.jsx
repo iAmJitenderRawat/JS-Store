@@ -22,9 +22,10 @@ import { useContext } from "react";
 import { useRef } from "react";
 import { AuthContext } from "./AuthContext";
 import { FaUserCircle } from "react-icons/fa";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 export function DrawerLeft() {
+  const arrUsers = JSON.parse(localStorage.getItem("usersLS")) || [];
   const userData = JSON.parse(localStorage.getItem("userDataLS")) || {};
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [image, setImage] = useState("");
@@ -32,12 +33,19 @@ export function DrawerLeft() {
   const { isAuth } = useContext(AuthContext);
 
   const handleImage = () => {
-    localStorage.setItem("imageLS",JSON.stringify(image));
+    // localStorage.setItem("imageLS",JSON.stringify(image));
+    arrUsers.forEach(element => {
+      if(element.email===userData.email){
+        element.imageUrl=image;
+        userData.imageUrl=image;
+      }
+    });
+    localStorage.setItem("usersLS",JSON.stringify(arrUsers));
   };
 
-  useEffect(()=>{
-    handleImage()
-  },[image])
+  // useEffect(()=>{
+  //   handleImage()
+  // },[image])
 
   return (
     <>
