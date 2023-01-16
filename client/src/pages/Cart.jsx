@@ -169,6 +169,13 @@ export const Cart = () => {
                   </Heading>
                 </Flex>
               </Box>
+              <Flex justify={"flex-end"} m={"10px 0"}>
+                <Link to={"/checkout"}>
+                  <Button bg={"green.400"} color={"white"}>
+                    Checkout
+                  </Button>
+                </Link>
+              </Flex>
             </Box>
           </Box>
         ) : (

@@ -54,6 +54,7 @@ export function CategoryProduct() {
     dispatch(add(product));
     toast({
       title: "Added to cart",
+      position:"bottom-left",
       status: "success",
       duration: 1000,
       isClosable: true,
@@ -158,11 +159,8 @@ export function CategoryProduct() {
                       <Divider />
                       <CardFooter>
                         <ButtonGroup spacing="2">
-                          <Button variant="solid" colorScheme="blue">
-                            Buy now
-                          </Button>
                           <Button
-                            variant="ghost"
+                            variant="solid"
                             colorScheme="blue"
                             onClick={() => handleAdd(item)}
                           >

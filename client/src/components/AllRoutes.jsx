@@ -7,6 +7,8 @@ import { Cart } from '../pages/Cart';
 import { SignUp } from '../pages/SignUp';
 import { SignIn } from '../pages/SignIn';
 import {PageNotFound} from "../pages/PageNotFound";
+import { Checkout } from '../pages/Checkout';
+import { PrivateRoute } from './PrivateRoute';
 
 export function AllRoutes() {
   
@@ -17,8 +19,23 @@ export function AllRoutes() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/category/:pages" element={<CategoryProduct />} />
-        <Route path="/products/:id" element={<SingleProductPage />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/products/:id"
+          element={
+            <PrivateRoute>
+              <SingleProductPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
