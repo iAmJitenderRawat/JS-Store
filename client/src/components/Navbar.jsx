@@ -29,6 +29,7 @@ import { AuthContext } from "./AuthContext";
 
 export function Navbar() {
   const userData = JSON.parse(localStorage.getItem("userDataLS")) || {};
+  const image = localStorage.getItem("imageLS");
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("blue.500", "gray.100");
   const color = useColorModeValue("white", "black");
@@ -38,7 +39,7 @@ export function Navbar() {
   const { isAuth, setAuth } = useContext(AuthContext);
   const toast=useToast();
   console.log(isAuth);
-
+  console.log(image);
   const handleClick = () => {
     setAuth(false)
     toast({
@@ -95,16 +96,18 @@ export function Navbar() {
                   <MenuList alignItems={"center"} bg={color} color={bg}>
                     <br />
                     <Center>
-                      <Avatar
-                        size={"2xl"}
-                        src={
-                          "https://avatars.dicebear.com/api/male/username.svg"
-                        }
+                      <Image
+                        src={image} alt={image}
+                        borderRadius={"50%"}
                       />
                     </Center>
                     <br />
                     <Center>
-                      {isAuth? <Text>{userData.firstName}</Text>: <Text>Username</Text>}
+                      {isAuth ? (
+                        <Text>{userData.firstName}</Text>
+                      ) : (
+                        <Text>Username</Text>
+                      )}
                     </Center>
                     <br />
                     <MenuDivider />
