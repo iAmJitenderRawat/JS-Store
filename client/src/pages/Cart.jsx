@@ -8,6 +8,7 @@ import {
   Heading,
   HStack,
   Image,
+  Select,
   Table,
   TableContainer,
   Tbody,
@@ -45,25 +46,26 @@ export const Cart = () => {
     });
   };
 
-  const incQty = (productId) => {
-    const exist = Cartproducts.find((item) => item.id === productId);
-    if (exist) {
-      setQty((qty) => qty + 1);
-    }
-  };
+  // const incQty = (productId) => {
+  //   const exist = Cartproducts.find((item) => item.id === productId);
+  //   if (exist) {
+  //     setQty((qty) => qty + 1);
+  //   }
+  // };
 
-  const decQty = (productId) => {
-    const exist = Cartproducts.find((item) => item.id === productId);
-    if (exist) {
-      setQty((qty) => qty - 1);
-    }
-  };
+  // const decQty = (productId) => {
+  //   const exist = Cartproducts.find((item) => item.id === productId);
+  //   if (exist) {
+  //     setQty((qty) => qty - 1);
+  //   }
+  // };
 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
 
   console.log(Cartproducts);
+
   return (
     <Box>
       <HStack p={2}>
@@ -102,8 +104,8 @@ export const Cart = () => {
                     <Heading fontSize={"md"}>
                       Price: ₹ {70 * product.price}
                     </Heading>
-                    <Flex justify={"space-between"} align={"center"}>
-                      <Flex>
+                    <Flex justify={"space-between"} align={"center"} gap={5}>
+                      {/* <Flex>
                         <Button
                           bg={"blue.400"}
                           onClick={() => decQty(product.id)}
@@ -117,7 +119,8 @@ export const Cart = () => {
                         >
                           +
                         </Button>
-                      </Flex>
+                      </Flex> */}
+                      <Text>Quantity: 1</Text>
                       <Button
                         bg={"red.400"}
                         onClick={() => handleRemove(product.id)}
