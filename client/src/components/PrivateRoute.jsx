@@ -6,7 +6,7 @@ export function PrivateRoute({ children }) {
   const { isAuth } = React.useContext(AuthContext);
 
   if (!isAuth) {
-    return <Navigate to="/signUp" />;
+    return <Navigate to="/signIn" />;
   }
 
   return children;

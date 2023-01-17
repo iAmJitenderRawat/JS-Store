@@ -54,7 +54,7 @@ export function CategoryProduct() {
     dispatch(add(product));
     toast({
       title: "Added to cart",
-      position:"bottom-left",
+      position: "bottom-left",
       status: "success",
       duration: 1000,
       isClosable: true,
@@ -97,11 +97,17 @@ export function CategoryProduct() {
           </BreadcrumbItem>
         </Breadcrumb>
         <Heading>
-          Category: <Text as={"span"} style={{ fontWeight: "400" }}>{pages}</Text>
+          Category:{" "}
+          <Text as={"span"} style={{ fontWeight: "400" }}>
+            {pages}
+          </Text>
         </Heading>
         <Heading>
           {products.length}
-          <Text as={"span"} style={{ fontWeight: "400" }}> products</Text>
+          <Text as={"span"} style={{ fontWeight: "400" }}>
+            {" "}
+            products
+          </Text>
         </Heading>
       </Flex>
       <HStack>
@@ -157,8 +163,7 @@ export function CategoryProduct() {
                         </Stack>
                       </CardBody>
                       <Divider />
-                      <CardFooter>
-                        <ButtonGroup spacing="2">
+                      <CardFooter display={"flex"} justify="space-between">
                           <Button
                             variant="solid"
                             colorScheme="blue"
@@ -166,7 +171,13 @@ export function CategoryProduct() {
                           >
                             Add to cart
                           </Button>
-                        </ButtonGroup>
+                          <Box fontSize="xl">
+                            {item.stock > 0 ? (
+                              <Text>In Stock</Text>
+                            ) : (
+                              <Text>Out of Stock</Text>
+                            )}
+                          </Box>
                       </CardFooter>
                     </Card>
                   </GridItem>

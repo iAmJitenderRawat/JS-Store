@@ -18,6 +18,7 @@ import {
   Grid,
   GridItem,
   VStack,
+  Center,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +28,9 @@ import {
   getSingleProducts,
   STATUSES,
 } from "../context/slices/singleProductSlice";
+import { add } from "./../context/slices/cartSlice";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import { Rating } from "../components/Rating";
 
 export function SingleProductPage() {
   const categories = useSelector((state) => state.category);
@@ -44,6 +47,17 @@ export function SingleProductPage() {
   useEffect(() => {
     dispatch(getSingleProducts(id));
   }, [dispatch, id]);
+
+  const handleAdd = (product) => {
+    dispatch(add(product));
+    toast({
+      title: "Added to cart",
+      position: "bottom-left",
+      status: "success",
+      duration: 1000,
+      isClosable: true,
+    });
+  };
 
   // console.log(categories)
 
@@ -100,32 +114,17 @@ export function SingleProductPage() {
         <Box className="right">
           <Card w={"80%"} m={"auto"}>
             <CardBody>
-              <HStack align={"center"}>
-                <VStack>
+              <Flex justify={"space-between"} p={"10px"}>
+                <Box>
                   <Image
                     src={product.thumbnail}
                     alt={product.title}
                     borderRadius="lg"
                     w={"250px"}
-                    m={"auto"}
                     h={"250px"}
                   />
-                  <HStack>
-                    <Flex gap={2}>
-                      {product?.images?.map((item) => {
-                        return (
-                          <Image
-                            src={item}
-                            w={"100px"}
-                            h={"100px"}
-                            borderRadius={5}
-                          />
-                        );
-                      })}
-                    </Flex>
-                  </HStack>
-                </VStack>
-                <Stack p={10}>
+                </Box>
+                <Stack>
                   <Heading size="md">Brand: {product.brand}</Heading>
                   <Text>
                     <Heading as={"h6"} fontSize={"md"} display={"inline-block"}>
@@ -141,25 +140,51 @@ export function SingleProductPage() {
                   </Text>
                   <Flex justify={"space-between"}>
                     <Text color="blue.600" fontSize="xl">
-                      Price: ₹ {80 * product.price}
+                      Price: ₹ {70 * product.price}
                     </Text>
-                    <Text color="blue.600" fontSize="xl">
-                      Rating: {product.rating}
-                    </Text>
+                    <Flex gap={2}>
+                      <Text color="blue.600" fontSize="xl">
+                        Rating:
+                      </Text>
+                      <Rating rating={product.rating} />
+                    </Flex>
                   </Flex>
+                  <Center>
+                    <Text fontSize="xl">
+                      {product.stock > 0 ? (
+                        <Text>In Stock</Text>
+                      ) : (
+                        <Text>Out of Stock</Text>
+                      )}
+                    </Text>
+                  </Center>
                 </Stack>
-              </HStack>
+              </Flex>
+              <Box p={"10px"}>
+                <Flex gap={2}>
+                  {product?.images?.map((item) => {
+                    return (
+                      <Image
+                        className="zoom"
+                        src={item}
+                        w={"100px"}
+                        h={"100px"}
+                        borderRadius={5}
+                      />
+                    );
+                  })}
+                </Flex>
+              </Box>
             </CardBody>
             <Divider />
             <CardFooter>
-              <ButtonGroup spacing="2">
-                <Button variant="solid" colorScheme="blue">
-                  Buy now
-                </Button>
-                <Button variant="ghost" colorScheme="blue">
-                  Add to cart
-                </Button>
-              </ButtonGroup>
+              <Button
+                onClick={() => handleAdd(product)}
+                variant="solid"
+                colorScheme="blue"
+              >
+                Add to cart
+              </Button>
             </CardFooter>
           </Card>
         </Box>

@@ -66,3 +66,8 @@
     border-radius: 10px;
     background-color: crimson;
 }
+.zoom:hover{
+    position: relative;
+    bottom: 50px;
+    scale: 2.5;
+}

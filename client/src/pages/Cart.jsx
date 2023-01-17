@@ -34,7 +34,7 @@ export const Cart = () => {
   const [qty, setQty] = useState(1);
 
   const toast = useToast();
-  console.log(qty);
+
   const handleRemove = (productId) => {
     dispatch(remove(productId));
     toast({
