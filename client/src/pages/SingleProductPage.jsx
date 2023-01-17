@@ -114,7 +114,7 @@ export function SingleProductPage() {
         <Box className="right">
           <Card w={"80%"} m={"auto"}>
             <CardBody>
-              <Flex justify={"space-between"} p={"10px"}>
+              <Flex justify={"space-between"} p={"10px"} gap={5}>
                 <Box>
                   <Image
                     src={product.thumbnail}
