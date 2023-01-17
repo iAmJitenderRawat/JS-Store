@@ -13,12 +13,9 @@ import {
   Image,
   Text,
   CardFooter,
-  ButtonGroup,
   Button,
-  Grid,
-  GridItem,
-  VStack,
   Center,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +33,7 @@ export function SingleProductPage() {
   const categories = useSelector((state) => state.category);
   const { data: product, status } = useSelector((state) => state.SingleProduct);
   const dispatch = useDispatch();
+  const toast=useToast();
 
   let { id } = useParams();
   console.log(id);
