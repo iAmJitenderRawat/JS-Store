@@ -88,7 +88,15 @@ export function Navbar() {
                   minW={0}
                 >
                   <Box>
-                    <FaUserCircle size={"30px"} color={color} />
+                    {(isAuth === true && userData.imageUrl) ? (
+                      <Image
+                        src={userData.imageUrl}
+                        w={"40px"}
+                        borderRadius={"50%"}
+                      />
+                    ) : (
+                      <FaUserCircle size={"30px"} color={color} />
+                    )}
                   </Box>
                 </MenuButton>
                 {isAuth ? (

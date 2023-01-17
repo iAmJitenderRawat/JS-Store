@@ -83,7 +83,16 @@ export function CategoryProduct() {
   }
   return (
     <Box m={"20px 0"}>
-      <Flex className="center">
+      <Flex
+        className="center"
+        direction={{
+          xl: "row",
+          lg: "row",
+          md: "row",
+          sm: "column",
+          base: "column",
+        }}
+      >
         <Breadcrumb
           spacing="8px"
           separator={<ChevronRightIcon color="gray.500" />}
@@ -98,20 +107,29 @@ export function CategoryProduct() {
         </Breadcrumb>
         <Heading>
           Category:{" "}
-          <Text as={"span"} style={{ fontWeight: "400" }}>
+          <Text as={"span"} fontWeight={400}>
             {pages}
           </Text>
         </Heading>
         <Heading>
           {products.length}
-          <Text as={"span"} style={{ fontWeight: "400" }}>
+          <Text as={"span"} fontWeight={400}>
             {" "}
             products
           </Text>
         </Heading>
       </Flex>
       <HStack>
-        <Box className="left">
+        <Box
+          className="left"
+          w={{
+            xl: "20%",
+            lg: "20%",
+            md: "30%",
+            sm: "40%",
+            base: "40%",
+          }}
+        >
           <Heading mb={"3px"}>Categories</Heading>
           <Divider orientation="horizontal" />
           {categories?.data?.map((item, i) => {
@@ -122,9 +140,26 @@ export function CategoryProduct() {
             );
           })}
         </Box>
-        <Box className="right">
+        <Box
+          className="right"
+          w={{
+            xl: "80%",
+            lg: "80%",
+            md: "70%",
+            sm: "60%",
+            base: "60%",
+          }}
+        >
           <VStack p={5}>
-            <Grid templateColumns={"repeat(3,1fr)"} gap={"20px"}>
+            <Grid
+              templateColumns={{
+                xl: "repeat(3, 1fr)",
+                lg: "repeat(3, 1fr)",
+                md: "repeat(2, 1fr)",
+                sm: "repeat(1, 1fr)",
+              }}
+              gap={"20px"}
+            >
               {products.map((item) => {
                 return (
                   <GridItem key={item.id}>
@@ -164,20 +199,20 @@ export function CategoryProduct() {
                       </CardBody>
                       <Divider />
                       <CardFooter display={"flex"} justify="space-between">
-                          <Button
-                            variant="solid"
-                            colorScheme="blue"
-                            onClick={() => handleAdd(item)}
-                          >
-                            Add to cart
-                          </Button>
-                          <Box fontSize="xl">
-                            {item.stock > 0 ? (
-                              <Text>In Stock</Text>
-                            ) : (
-                              <Text>Out of Stock</Text>
-                            )}
-                          </Box>
+                        <Button
+                          variant="solid"
+                          colorScheme="blue"
+                          onClick={() => handleAdd(item)}
+                        >
+                          Add to cart
+                        </Button>
+                        <Box fontSize="xl">
+                          {item.stock > 0 ? (
+                            <Text>In Stock</Text>
+                          ) : (
+                            <Text>Out of Stock</Text>
+                          )}
+                        </Box>
                       </CardFooter>
                     </Card>
                   </GridItem>

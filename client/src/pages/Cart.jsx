@@ -68,8 +68,17 @@ export const Cart = () => {
 
   return (
     <Box>
-      <HStack p={2}>
-        <Box className="left">
+      <HStack>
+        <Box
+          className="left"
+          w={{
+            xl: "20%",
+            lg: "20%",
+            md: "30%",
+            sm: "40%",
+            base: "50%",
+          }}
+        >
           <Heading mb={"3px"}>Categories</Heading>
           <Divider orientation="horizontal" />
           {categories?.data?.map((item, i) => {
@@ -81,9 +90,26 @@ export const Cart = () => {
           })}
         </Box>
         {Cartproducts.length > 0 ? (
-          <Box className="right">
+          <Box
+            className="right"
+            w={{
+              xl: "80%",
+              lg: "80%",
+              md: "70%",
+              sm: "60%",
+              base: "50%",
+            }}
+          >
             <Heading>Cart Items</Heading>
-            <Grid templateColumns={"repeat(3,1fr)"} gap={10}>
+            <Grid
+              templateColumns={{
+                xl: "repeat(4, 1fr)",
+                lg: "repeat(3, 1fr)",
+                md: "repeat(2, 1fr)",
+                sm: "repeat(1, 1fr)",
+              }}
+              gap={5}
+            >
               {Cartproducts.map((product) => {
                 return (
                   <GridItem
@@ -132,7 +158,12 @@ export const Cart = () => {
                 );
               })}
             </Grid>
-            <Box m={"20px 0"} p={"50px"}>
+          </Box>
+        ) : (
+          <EmptyCart />
+        )}
+      </HStack>
+      {Cartproducts.length >0 ?             <Box m={"20px 0"} p={"50px"}>
               <Box className={"itemCard"}>
                 <TableContainer p={"30px"} borderRadius={"20px"}>
                   <Table size="sm">
@@ -179,12 +210,7 @@ export const Cart = () => {
                   </Button>
                 </Link>
               </Flex>
-            </Box>
-          </Box>
-        ) : (
-          <EmptyCart />
-        )}
-      </HStack>
+            </Box>: null}
     </Box>
   );
 };

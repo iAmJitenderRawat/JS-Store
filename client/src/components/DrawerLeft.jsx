@@ -9,6 +9,7 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  Heading,
   IconButton,
   Image,
   Input,
@@ -91,6 +92,7 @@ export function DrawerLeft() {
                   Name: {userData.firstName} {userData.lastName}
                 </Text>
                 <Text>Email: {userData.email}</Text>
+                <Heading fontSize={"lg"}>Add Profile Picture</Heading>
                 <InputGroup m={"10px 0"}>
                   <InputLeftAddon children={<FaUserCircle />} />
                   <Input

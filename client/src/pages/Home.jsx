@@ -44,7 +44,12 @@ export function Home() {
   return (
     <div>
       <Grid
-        templateColumns={["repeat(3,1fr)", "repeat(4,1fr)", "repeat(5,1fr)"]}
+        templateColumns={{
+          xl: "repeat(5, 1fr)",
+          lg: "repeat(5, 1fr)",
+          md: "repeat(4, 1fr)",
+          sm: "repeat(3, 1fr)",
+        }}
         gap={5}
         p={5}
       >
