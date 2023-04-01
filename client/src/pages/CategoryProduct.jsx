@@ -13,7 +13,6 @@ import {
   CardBody,
   Stack,
   CardFooter,
-  ButtonGroup,
   Button,
   Breadcrumb,
   BreadcrumbItem,
@@ -29,10 +28,11 @@ import {
   getCategoriesProducts,
   STATUSES,
 } from "../context/slices/productsSlice";
-import { add } from "./../context/slices/cartSlice";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import { useCart } from "react-use-cart";
 
 export function CategoryProduct() {
+  const { addItem } = useCart();
   const categories = useSelector((state) => state.category);
   const { data: products, status } = useSelector((state) => state.product);
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ export function CategoryProduct() {
   }, [dispatch, pages]);
 
   const handleAdd = (product) => {
-    dispatch(add(product));
+    addItem(product);
     toast({
       title: "Added to cart",
       position: "bottom-left",
@@ -66,10 +66,12 @@ export function CategoryProduct() {
 
   if (status === STATUSES.LOADING) {
     return (
-      <Heading textAlign={"center"} p={"20px 20%"}>
-        <Spinner boxSize={"xl"} />
-        Loading....
-      </Heading>
+      <Flex justifyContent={"center"} m={"300px 0"}>
+        <Heading textAlign={"center"}>
+          <Spinner />
+          Loading....
+        </Heading>
+      </Flex>
     );
   }
 

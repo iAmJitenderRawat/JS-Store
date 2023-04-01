@@ -22,9 +22,9 @@ import { DrawerLeft } from "./DrawerLeft";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
+import { useCart } from "react-use-cart";
 // import { setAuth } from "../context/slices/authSlice";
 
 export function Navbar() {
@@ -32,15 +32,15 @@ export function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("blue.500", "gray.100");
   const color = useColorModeValue("white", "black");
-  const Cartproducts = useSelector((state) => state.cart);
+  const { items } = useCart();
   // const dispatch = useDispatch();
   // const { isAuth } = useSelector((state) => state.auth);
   const { isAuth, setAuth } = useContext(AuthContext);
-  const toast=useToast();
+  const toast = useToast();
   console.log(isAuth);
 
   const handleClick = () => {
-    setAuth(false)
+    setAuth(false);
     toast({
       title: "LogOut Successfull",
       position: "top",
@@ -76,7 +76,7 @@ export function Navbar() {
               <Link to={"/cart"}>
                 <Flex alignItems={"center"}>
                   <AiOutlineShoppingCart size={"36px"} />
-                  <Box className="cartItem">{Cartproducts.length}</Box>
+                  <Box className="cartItem">{items.length}</Box>
                 </Flex>
               </Link>
               <Menu>
@@ -88,7 +88,7 @@ export function Navbar() {
                   minW={0}
                 >
                   <Box>
-                    {(isAuth === true && userData.imageUrl) ? (
+                    {isAuth === true && userData.imageUrl ? (
                       <Image
                         src={userData.imageUrl}
                         w={"40px"}

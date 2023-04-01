@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper";
-import { Grid, GridItem, Image, Box, Heading, Spinner } from "@chakra-ui/react";
+import { Grid, GridItem, Image, Box, Heading, Spinner, Flex } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../context/slices/categogiesSlice";
 import { STATUSES } from "../context/slices/categogiesSlice";
@@ -24,10 +24,12 @@ export function Home() {
 
   if (status === STATUSES.LOADING) {
     return (
-      <Box p={"10%"}>
-        <Spinner boxSize={"sm"} />
-        <Heading>Loading....</Heading>
-      </Box>
+      <Flex justifyContent={"center"} m={"300px 0"}>
+        <Heading textAlign={"center"}>
+          <Spinner />
+          Loading....
+        </Heading>
+      </Flex>
     );
   }
 

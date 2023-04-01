@@ -16,6 +16,7 @@ import {
   Button,
   Center,
   useToast,
+  Spinner,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,16 +26,16 @@ import {
   getSingleProducts,
   STATUSES,
 } from "../context/slices/singleProductSlice";
-import { add } from "./../context/slices/cartSlice";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Rating } from "../components/Rating";
+import { useCart } from "react-use-cart";
 
 export function SingleProductPage() {
   const categories = useSelector((state) => state.category);
   const { data: product, status } = useSelector((state) => state.SingleProduct);
   const dispatch = useDispatch();
-  const toast=useToast();
-
+  const toast = useToast();
+const { addItem } = useCart();
   let { id } = useParams();
   console.log(id);
 
@@ -47,7 +48,7 @@ export function SingleProductPage() {
   }, [dispatch, id]);
 
   const handleAdd = (product) => {
-    dispatch(add(product));
+    addItem(product);
     toast({
       title: "Added to cart",
       position: "bottom-left",
@@ -57,10 +58,15 @@ export function SingleProductPage() {
     });
   };
 
-  // console.log(categories)
-
   if (status === STATUSES.LOADING) {
-    return <h2>Loading....</h2>;
+    return (
+      <Flex justifyContent={"center"} m={"300px 0"}>
+        <Heading textAlign={"center"}>
+          <Spinner />
+          Loading....
+        </Heading>
+      </Flex>
+    );
   }
 
   if (status === STATUSES.ERROR) {

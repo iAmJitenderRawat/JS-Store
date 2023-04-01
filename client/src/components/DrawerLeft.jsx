@@ -42,6 +42,7 @@ export function DrawerLeft() {
       }
     });
     localStorage.setItem("usersLS", JSON.stringify(arrUsers));
+    onClose();
   };
 
   // useEffect(()=>{
@@ -106,14 +107,14 @@ export function DrawerLeft() {
             </DrawerBody>
           ) : null}
 
-          <DrawerFooter>
+          {isAuth?<DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
               Cancel
             </Button>
             <Button colorScheme="blue" onClick={handleImage}>
               Save
             </Button>
-          </DrawerFooter>
+          </DrawerFooter>: null}
         </DrawerContent>
       </Drawer>
     </>

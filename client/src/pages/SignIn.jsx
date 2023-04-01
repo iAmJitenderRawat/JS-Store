@@ -117,7 +117,7 @@ export function SignIn() {
                   bg: "blue.500",
                 }}
               >
-                <Link to={"/"}>Sign In</Link>
+                <Link to={"/cart"}>Sign In</Link>
               </Button>
             </Stack>
           </Stack>
