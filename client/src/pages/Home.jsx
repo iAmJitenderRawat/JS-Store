@@ -57,10 +57,8 @@ export function Home() {
       >
         {categories?.map((item, i) => {
           return (
-            <Link to={`/category/${item}`}>
-              <GridItem className="card" key={i}>
-                {item}
-              </GridItem>
+            <Link key={i} to={`/category/${item.slug}`}>
+              <GridItem className="card">{item.name}</GridItem>
             </Link>
           );
         })}

@@ -73,7 +73,7 @@ export const Cart = () => {
           {categories?.data?.map((item, i) => {
             return (
               <Box key={i} className={"categoryItems"}>
-                <Link to={`/category/${item}`}>{item}</Link>
+                <Link to={`/category/${item.slug}`}>{item.name}</Link>
               </Box>
             );
           })}
@@ -118,7 +118,7 @@ export const Cart = () => {
                     />
                     <Heading fontSize="md">Title: {product.title}</Heading>
                     <Heading fontSize={"md"}>
-                      Price: ₹ {70 * product.price}
+                      Price: ₹ {(70 * product.price).toFixed(2)}
                     </Heading>
                     <Flex justify={"space-between"} align={"center"} gap={5}>
                       <Flex>
@@ -181,7 +181,7 @@ export const Cart = () => {
                           {/* </Flex> */}
                         </Td>
                         <Td isNumeric>
-                          ₹ {70 * product.price * product.quantity}
+                          ₹ {(70 * product.price * product.quantity).toFixed(2)}
                         </Td>
                       </Tr>
                     </Tbody>
@@ -193,7 +193,7 @@ export const Cart = () => {
               <Heading mr={"30px"}>Grand Total:</Heading>
               <Heading>
                 ₹{" "}
-                {cartTotal*70}
+                {(cartTotal*70)?.toFixed(2)}
               </Heading>
             </Flex>
           </Box>

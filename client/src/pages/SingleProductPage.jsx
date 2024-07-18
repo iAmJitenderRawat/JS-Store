@@ -110,7 +110,7 @@ const { addItem } = useCart();
           {categories?.data?.map((item, i) => {
             return (
               <Box key={i} className={"categoryItems"}>
-                <Link to={`/category/${item}`}>{item}</Link>
+                <Link to={`/category/${item.slug}`}>{item.name}</Link>
               </Box>
             );
           })}

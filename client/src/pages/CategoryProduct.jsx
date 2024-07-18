@@ -39,8 +39,7 @@ export function CategoryProduct() {
 
   const toast = useToast();
 
-  let { pages } = useParams();
-  console.log(pages);
+  const { pages } = useParams();
 
   useEffect(() => {
     dispatch(getCategories());
@@ -61,7 +60,7 @@ export function CategoryProduct() {
     });
   };
 
-  // console.log(categories)
+  console.log(categories)
   console.log(products);
 
   if (status === STATUSES.LOADING) {
@@ -110,7 +109,7 @@ export function CategoryProduct() {
         <Heading>
           Category:{" "}
           <Text as={"span"} fontWeight={400}>
-            {pages}
+            {categories.data.find(category=>category.slug===pages)?.name}
           </Text>
         </Heading>
         <Heading>
@@ -137,7 +136,7 @@ export function CategoryProduct() {
           {categories?.data?.map((item, i) => {
             return (
               <Box key={i} className={"categoryItems"}>
-                <Link to={`/category/${item}`}>{item}</Link>
+                <Link to={`/category/${item.slug}`}>{item.name}</Link>
               </Box>
             );
           })}
@@ -191,7 +190,7 @@ export function CategoryProduct() {
                           </Text>
                           <Flex justify={"space-between"}>
                             <Text color="blue.600" fontSize="xl">
-                              Price: ₹ {70 * item.price}
+                              Price: ₹ {(70 * item.price).toFixed(2)}
                             </Text>
                             <Text color="blue.600" fontSize="xl">
                               Rating: {item.rating}

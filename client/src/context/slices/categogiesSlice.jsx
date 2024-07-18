@@ -34,4 +34,5 @@ export default categoriesSlice.reducer;
  export const getCategories = createAsyncThunk("products/categories", async () => {
   return await axios.get("https://dummyjson.com/products/categories")
    .then(res=>res.data)
+   .catch(err=>console.log('error===>', err))
  });

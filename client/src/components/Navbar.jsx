@@ -21,7 +21,7 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { DrawerLeft } from "./DrawerLeft";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import { useCart } from "react-use-cart";
@@ -33,14 +33,13 @@ export function Navbar() {
   const bg = useColorModeValue("blue.500", "gray.100");
   const color = useColorModeValue("white", "black");
   const { items } = useCart();
-  // const dispatch = useDispatch();
-  // const { isAuth } = useSelector((state) => state.auth);
-  const { isAuth, setAuth } = useContext(AuthContext);
+
+  const isAuth = JSON.parse(localStorage.getItem("isAuth"));
   const toast = useToast();
-  console.log(isAuth);
+  const navigate=useNavigate();
+  console.log('isAuth', isAuth)
 
   const handleClick = () => {
-    setAuth(false);
     toast({
       title: "LogOut Successfull",
       position: "top",
@@ -48,6 +47,9 @@ export function Navbar() {
       duration: 1000,
       isClosable: true,
     });
+    localStorage.setItem("isAuth",false);
+    window.location.reload();
+    navigate("/")
   };
 
   return (

@@ -16,11 +16,12 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { AiTwotoneHome, AiOutlineCreditCard } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
 
 export function Checkout() {
   const toast = useToast();
+  const navigate=useNavigate();
   const {
     isEmpty,
     cartTotal,
@@ -44,6 +45,9 @@ export function Checkout() {
       });
       emptyCart()
     }, 2000);
+    setTimeout(()=>{
+      navigate("/");
+    },3000)
   };
 
   return (
@@ -94,7 +98,10 @@ export function Checkout() {
                         <Box>
                           <Text>{item.title}</Text>
                           <Text>
-                            {item.quantity}{" * ₹ "}{70 * item.price} {"= ₹ "} {70*item.price*item.quantity}
+                            {item.quantity}
+                            {" * ₹ "}
+                            {70 * item.price} {"= ₹ "}{" "}
+                            {70 * item.price * item.quantity}
                           </Text>
                         </Box>
                       </Flex>
@@ -104,7 +111,9 @@ export function Checkout() {
                 })
               : null}
             <Heading>
-              {items.length > 0 ? "Total: ₹" + " " + 70 * cartTotal : null}
+              {items.length > 0
+                ? "Total: ₹" + " " + (70 * cartTotal)?.toFixed(2)
+                : null}
             </Heading>
             <Center p={5}>
               <Button

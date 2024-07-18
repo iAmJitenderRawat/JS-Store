@@ -14,12 +14,13 @@ import {
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
 
 export function SignIn() {
   const arrUsers = JSON.parse(localStorage.getItem("usersLS")) || [];
   const { isAuth, setAuth } = useContext(AuthContext);
+  const navigate=useNavigate();
   const toast = useToast();
   const [userData, setUserData] = useState({
     email: "",
@@ -44,20 +45,20 @@ export function SignIn() {
             duration: 1000,
             isClosable: true,
           });
-          localStorage.setItem("userDataLS", JSON.stringify(element));
-          setAuth(true);
-          console.log(isAuth);
+          localStorage.setItem("isAuth", JSON.stringify(true));
+          navigate("/cart");
+          window.location.reload();
         }
-        // else {
-        //   toast({
-        //     title: "Login Failed",
-        //     description: "Wrong email or password.",
-        //     position: "top",
-        //     status: "error",
-        //     duration: 1000,
-        //     isClosable: true,
-        //   });
-        // }
+        else {
+          toast({
+            title: "Login Failed",
+            description: "Wrong email or password.",
+            position: "top",
+            status: "error",
+            duration: 1000,
+            isClosable: true,
+          });
+        }
       });
     } else {
       toast({
@@ -117,8 +118,18 @@ export function SignIn() {
                   bg: "blue.500",
                 }}
               >
-                <Link to={"/cart"}>Sign In</Link>
+              Sign In
               </Button>
+              <Stack pt={6}>
+                <Text align={"center"}>
+                  Don't have an account.{" "}
+                  <Link to={"/signUp"}>
+                    <Text as={"span"} color={"blue.400"}>
+                      Create one.
+                    </Text>
+                  </Link>
+                </Text>
+              </Stack>
             </Stack>
           </Stack>
         </Box>
